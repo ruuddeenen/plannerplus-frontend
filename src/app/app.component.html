@@ -4,12 +4,14 @@
   </button>
   <h1>Planner+</h1>
   <button mat-button routerLink="/" background-color="accent">Home</button>
+  <button mat-button (click)="logout()" background-color="accent">Logout</button>
+  <h1 *ngIf="authService.userData as user">Hello, {{user.displayName}}</h1>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container" autosize>
   <mat-sidenav #sidenav class="sidenav" mode="side" opened="true">
     <mat-nav-list>
-      <mat-list-item [routerLink]="['/profile']" routerLinkActive="router-link-active">
+      <mat-list-item [routerLink]="['profile']" routerLinkActive="router-link-active">
         <span class="full-width" *ngIf="isExpanded">Profile</span>
         <mat-icon mat-list-icon>person</mat-icon>
       </mat-list-item>
