@@ -1,21 +1,22 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+  <button mat-icon-button (click)="isExpanded = !isExpanded">
+    <mat-icon>menu</mat-icon>
+  </button>
   <h1>Planner+</h1>
   <button mat-button routerLink="/" background-color="accent">Home</button>
 </mat-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav #sidenav opened mode="side">
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav #sidenav class="sidenav" mode="side" opened="true">
     <mat-nav-list>
-      <mat-list-item>
-        <button mat-button>value</button>
-      </mat-list-item>
-      <mat-list-item>
-        <button mat-button>value</button>
+      <mat-list-item [routerLink]="['/profile']" routerLinkActive="router-link-active">
+        <span class="full-width" *ngIf="isExpanded">Profile</span>
+        <mat-icon mat-list-icon>person</mat-icon>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+
+  <div class="content">
     <router-outlet></router-outlet>
-  </mat-sidenav-content>
+  </div>
 </mat-sidenav-container>
