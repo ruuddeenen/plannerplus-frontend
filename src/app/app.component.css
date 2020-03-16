@@ -1,0 +1,7 @@
+mat-sidenav {
+    width: 300px;
+}
+
+router-outlet {
+    padding: 10px;
+}
