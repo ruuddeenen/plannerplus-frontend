@@ -8,7 +8,7 @@ import { environment } from "../environments/environment";
 import { AuthService } from "./shared/services/auth.service";
 
 // Components
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 
 
@@ -31,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     LoginComponent,
     ProfileComponent,
     VerifyEmailComponent,
+    ToolbarComponent,
   ],
   imports: [
     AppRoutingModule,

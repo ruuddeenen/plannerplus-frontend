@@ -7,8 +7,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 // Guard services
-import { SecureInnerPagesGuard } from './shared/guard/secure-inner-pages.guard';
-import { AuthGuard } from './shared/guard/auth.guard';
+import { SecureInnerPagesGuard } from './shared/guard/secure-inner-pages-auth/secure-inner-pages.guard';
+import { AuthGuard } from './shared/guard/auth/auth.guard';
 
 
 
