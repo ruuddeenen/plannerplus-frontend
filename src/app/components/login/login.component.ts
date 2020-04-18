@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl,
+    password: new FormControl,
   });
 
   submit(){
@@ -28,10 +28,6 @@ export class LoginComponent implements OnInit {
         this.form.controls.password.value
       )
     }
-  }
-
-  logout(){
-    this.authService.logout()
   }
 
   @Input() error: string | null

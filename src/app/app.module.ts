@@ -19,6 +19,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from "@angular/common/http";
+import { EmployeesComponent } from './employees/employees.component';
 
 
 
@@ -29,6 +32,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AppComponent,
     LoginComponent,
     ProfileComponent,
+    RegisterComponent,
+    EmployeesComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -39,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

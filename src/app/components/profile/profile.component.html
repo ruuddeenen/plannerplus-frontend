@@ -1,2 +1,39 @@
-<p>profile works!</p>
-    
+<mat-card class="card" *ngIf="employee">
+    <mat-card-header>
+        <mat-card-title>{{employee.name}} {{employee.surname}}</mat-card-title>
+        <mat-card-subtitle>subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Profile picture">
+    <mat-card-content>
+        <div class="info-line">
+            <p>
+                <mat-icon>face</mat-icon>
+                Male
+            </p>
+        </div>
+        <div class="info-line">
+            <p>
+                <mat-icon>cake</mat-icon>
+                July 3rd, 1998
+            </p>
+        </div>
+        <div class="info-line">
+            <p>
+                <mat-icon>location_on</mat-icon>
+                Asten
+            </p>
+        </div>
+        <div class="info-line">
+            <p>
+                <mat-icon>phone</mat-icon>
+                06 58 91 36 56
+            </p>
+        </div>
+        <div class="info-line">
+            <p>
+                <mat-icon>email</mat-icon>
+                mail@ruuddeenen.com
+            </p>
+        </div>
+    </mat-card-content>
+</mat-card>

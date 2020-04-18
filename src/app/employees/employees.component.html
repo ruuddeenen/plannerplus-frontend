@@ -1,0 +1,38 @@
+<mat-card>
+
+    <mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="surname">
+            <mat-header-cell *matHeaderCellDef> Surname</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.surname}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="profile">
+            <mat-header-cell *matHeaderCellDef> Profile</mat-header-cell>
+            <mat-cell *matCellDef="let element"> Go to profile
+            </mat-cell>
+        </ng-container>
+
+        a-md-data-table-column
+        <!-- press ctrl + space to add more column snippet or delete this line -->
+
+        <!-- press ctrl + space to add more column snippet or delete this line -->
+
+        <!-- press ctrl + space to add more column snippet or delete this line -->
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let element; columns: displayedColumns;" [routerLink]="['/profile/', element.uuid]"></mat-row>
+    </mat-table>
+
+
+    <mat-list>
+        <mat-list-item *ngFor="let employee of employees">
+            {{employee.name}} {{employee.surname}}
+        </mat-list-item>
+    </mat-list>
+</mat-card>

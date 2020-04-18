@@ -5,7 +5,7 @@
   <h1>Planner+</h1>
   <button mat-button routerLink="/" background-color="accent">Home</button>
   <button *ngIf="authService.userData" mat-button (click)="logout()" background-color="accent">Logout</button>
-  <h1 *ngIf="authService.userData as user">Hello, {{user.displayName}}</h1>
+  <h1 *ngIf="authService.userData as user">Hello, {{user.email}}</h1>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container" autosize>
@@ -14,6 +14,10 @@
       <mat-list-item [routerLink]="['profile']" routerLinkActive="router-link-active">
         <span class="full-width" *ngIf="isExpanded">Profile</span>
         <mat-icon mat-list-icon>person</mat-icon>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['employees']" routerLinkActive="router-link-active">
+        <span class="full-width" *ngIf="isExpanded">Employees</span>
+        <mat-icon mat-list-icon>people</mat-icon>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
