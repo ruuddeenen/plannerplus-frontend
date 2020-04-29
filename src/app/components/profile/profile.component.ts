@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { User } from 'src/app/shared/services/user/user';
-import { EmployeesComponent } from 'src/app/employees/employees.component';
+import { EmployeesComponent } from 'src/app/components/employees/employees.component';
 import { EmployeeService } from 'src/app/shared/services/api/employee/employee.service';
 import { Employee } from 'src/app/shared/services/api/employee/employee';
 
@@ -11,6 +11,10 @@ import { Employee } from 'src/app/shared/services/api/employee/employee';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  genders = [
+    'Male',
+    'Female'
+  ]
 
   private id: string
   public user: User
@@ -24,7 +28,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.getId(location.pathname)
     this.employeeService.get(this.id)
-      .subscribe(res => {this.employee = res})
+      .subscribe(res => { this.employee = res })
   }
 
   private getId(path: string): string {

@@ -19,9 +19,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from "@angular/common/http";
-import { EmployeesComponent } from './employees/employees.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { EmployeesComponent } from './components/employees/employees.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { AddHeaderInterceptor } from './shared/services/api/AddHeaderInterceptor';
 
 
 
@@ -47,7 +49,11 @@ import { EmployeesComponent } from './employees/employees.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearence: 'fill' } },
+    { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

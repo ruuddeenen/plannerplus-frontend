@@ -8,15 +8,15 @@ import { AuthGuard } from './shared/guard/auth/auth.guard';
 // Components
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { RegisterComponent } from './register/register.component';
-import { EmployeesComponent } from './employees/employees.component';
+import { RegisterComponent } from './components/register/register.component';
+import { EmployeesComponent } from './components/employees/employees.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'profile/:uuid', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile/:uuid', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [SecureInnerPagesGuard] },
   { path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard] }
 ];

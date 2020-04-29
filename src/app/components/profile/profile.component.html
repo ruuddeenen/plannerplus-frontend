@@ -8,31 +8,25 @@
         <div class="info-line">
             <p>
                 <mat-icon>face</mat-icon>
-                Male
-            </p>
-        </div>
-        <div class="info-line">
-            <p>
-                <mat-icon>cake</mat-icon>
-                July 3rd, 1998
+                {{genders[employee.gender]}}
             </p>
         </div>
         <div class="info-line">
             <p>
                 <mat-icon>location_on</mat-icon>
-                Asten
+                {{employee.place}}
             </p>
         </div>
         <div class="info-line">
             <p>
                 <mat-icon>phone</mat-icon>
-                06 58 91 36 56
+                {{employee.phone}}
             </p>
         </div>
         <div class="info-line">
             <p>
                 <mat-icon>email</mat-icon>
-                mail@ruuddeenen.com
+                {{employee.email}}
             </p>
         </div>
     </mat-card-content>

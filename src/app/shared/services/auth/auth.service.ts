@@ -21,9 +21,16 @@ export class AuthService {
       if (user) {
         this.userData = user
         localStorage.setItem('user', JSON.stringify(this.userData))
+
         JSON.parse(localStorage.getItem('user'))
+        this.fireAuth.idToken.subscribe(
+          data => {
+            localStorage.setItem('X-Firebase-Auth-Token', data)
+          }
+        )
       } else {
-        localStorage.setItem('user', null)
+        localStorage.removeItem('user')
+        localStorage.removeItem('X-Firebase-Auth-Token')
         JSON.parse(localStorage.getItem('user'))
       }
     })
@@ -79,11 +86,17 @@ export class AuthService {
       })
   }
 
-  async register(name: string, surname: string, email: string, password: string) {
-    return await this.fireAuth.auth.createUserWithEmailAndPassword(email, password)
+  async register(employee: Employee, password: string) {
+    return await this.fireAuth.auth.createUserWithEmailAndPassword(employee.email, password)
       .then((result) => {
         this.setUserData(result.user)
-        this.registerEmployee(name, surname, result.user)
+        employee.uuid = result.user.uid
+        this.registerEmployee(employee)
+        result.user.updateProfile({
+          displayName: employee.name + ' ' + employee.surname
+        })
+      }).then(() => {
+        window.location.href = '/profile'
       }).catch((error) => {
         this.fireAuth.auth.currentUser.delete()
         console.log(error)
@@ -91,12 +104,13 @@ export class AuthService {
       })
   }
 
-  registerEmployee(name: string, surname: string, user: User) {
-    const employee: Employee = {
-      uuid: user.uid,
-      name: name,
-      surname: surname
-    }
-    this.employeeService.post(employee)
+  registerEmployee(employee: Employee) {
+    this.fireAuth.idToken.subscribe(
+      data => {
+        localStorage.setItem('X-Firebase-Auth-Token', data)
+        console.log('[token] : ', localStorage.getItem('X-Firebase-Auth-Token'))
+        this.employeeService.post(employee)
+      }
+    )
   }
 }

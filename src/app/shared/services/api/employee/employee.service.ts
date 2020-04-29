@@ -4,7 +4,7 @@ import { Employee } from './employee';
 import { Observable } from 'rxjs';
 
 
-const _baseUrl = 'http://localhost:8008/employees/'
+const _baseUrl = 'http://localhost:8008/api/employees/'
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
@@ -20,6 +20,7 @@ export class EmployeeService {
   }
 
   post(employee: Employee) {
+    console.log('POST', employee)
     this.http.post(_baseUrl, employee)
       .subscribe(
         data => {

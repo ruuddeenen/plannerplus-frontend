@@ -5,7 +5,7 @@
   <h1>Planner+</h1>
   <button mat-button routerLink="/" background-color="accent">Home</button>
   <button *ngIf="authService.userData" mat-button (click)="logout()" background-color="accent">Logout</button>
-  <h1 *ngIf="authService.userData as user">Hello, {{user.email}}</h1>
+  <h1 *ngIf="authService.userData as user">Hello, {{user.displayName}}</h1>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container" autosize>
