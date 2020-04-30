@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core'
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router'
-import { User } from '../user/user';
+import { User } from './user';
 import { EmployeeService } from "../api/employee/employee.service";
 import { Employee } from '../api/employee/employee';
 

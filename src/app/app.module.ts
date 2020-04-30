@@ -24,6 +24,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { EmployeesComponent } from './components/employees/employees.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { AddHeaderInterceptor } from './shared/services/api/AddHeaderInterceptor';
+import { PlanningComponent } from './components/planning/planning.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 
@@ -36,6 +39,7 @@ import { AddHeaderInterceptor } from './shared/services/api/AddHeaderInterceptor
     ProfileComponent,
     RegisterComponent,
     EmployeesComponent,
+    PlanningComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -47,7 +51,8 @@ import { AddHeaderInterceptor } from './shared/services/api/AddHeaderInterceptor
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [
     AuthService,

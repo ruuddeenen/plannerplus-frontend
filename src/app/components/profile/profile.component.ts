@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { User } from 'src/app/shared/services/user/user';
+import { User } from 'src/app/shared/services/auth/user';
 import { EmployeesComponent } from 'src/app/components/employees/employees.component';
 import { EmployeeService } from 'src/app/shared/services/api/employee/employee.service';
 import { Employee } from 'src/app/shared/services/api/employee/employee';
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
     this.employeeService.get(this.id)
       .subscribe(res => { this.employee = res })
   }
-
+  
   private getId(path: string): string {
     const id = path.replace('/', '').replace('profile', '')
     if (id.length < 1) {

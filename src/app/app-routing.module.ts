@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EmployeesComponent } from './components/employees/employees.component';
+import { PlanningComponent } from './components/planning/planning.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'profile/:uuid', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [SecureInnerPagesGuard] },
-  { path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard] }
+  { path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard] },
+  { path: 'planning', component: PlanningComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

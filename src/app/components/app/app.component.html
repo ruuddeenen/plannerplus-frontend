@@ -19,6 +19,10 @@
         <span class="full-width" *ngIf="isExpanded">Employees</span>
         <mat-icon mat-list-icon>people</mat-icon>
       </mat-list-item>
+      <mat-list-item [routerLink]="['planning']" routerLinkActive="router-link-active">
+        <span class="full-width" *ngIf="isExpanded">Planning</span>
+        <mat-icon mat-list-icon>event</mat-icon>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 

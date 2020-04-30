@@ -7,6 +7,9 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    background-image: url('../../../assets/img/bg_aisle_blurred_2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .full-width {

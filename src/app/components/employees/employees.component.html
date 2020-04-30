@@ -1,6 +1,15 @@
 <mat-card>
+    <mat-form-field>
+        <mat-label>Department</mat-label>
+        <mat-select [(ngModel)]="selectedValue" (selectionChange)="handleChange($event)">
+            <mat-option>All</mat-option>
+            <mat-option *ngFor="let department of departments" [value]="department.id">
+                {{department.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <mat-table [dataSource]="dataSource" matSort>
+    <mat-table [dataSource]="employeesDataSource" matSort>
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
