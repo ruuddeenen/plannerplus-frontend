@@ -20,8 +20,12 @@
         <mat-icon mat-list-icon>people</mat-icon>
       </mat-list-item>
       <mat-list-item [routerLink]="['planning']" routerLinkActive="router-link-active">
-        <span class="full-width" *ngIf="isExpanded">Planning</span>
+        <span class="full-width" *ngIf="isExpanded">Pers. Planning</span>
         <mat-icon mat-list-icon>event</mat-icon>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['dep_planning']" routerLinkActive="router-link-active">
+        <span class="full-width" *ngIf="isExpanded">Dep. Planning</span>
+        <mat-icon mat-list-icon>event_note</mat-icon>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

@@ -11,6 +11,10 @@ import { AuthService } from "./shared/services/auth/auth.service";
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DepPlanningComponent } from './components/dep-planning/dep-planning.component';
+import { PlanningComponent } from './components/planning/planning.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { RegisterComponent } from './components/register/register.component';
 
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,12 +23,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from "./material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RegisterComponent } from './components/register/register.component';
+
+// Etc
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { EmployeesComponent } from './components/employees/employees.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { AddHeaderInterceptor } from './shared/services/api/AddHeaderInterceptor';
-import { PlanningComponent } from './components/planning/planning.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
@@ -40,6 +43,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     RegisterComponent,
     EmployeesComponent,
     PlanningComponent,
+    DepPlanningComponent,
   ],
   imports: [
     AppRoutingModule,
