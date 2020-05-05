@@ -20,7 +20,7 @@
         <div *ngIf="selectedValueWeek; else elseBlock">
             <mat-select [(ngModel)]="selectedValueDay" (selectionChange)="handleChange($event)" id="day">
                 <mat-option *ngFor="let day of selectedValueWeek.days" [value]="day">
-                    {{day}}
+                    {{day | date:"dd-MM-yy EEEE" }}
                 </mat-option>
             </mat-select>
         </div>
@@ -34,7 +34,7 @@
         <ng-container matColumnDef="employee">
             <mat-header-cell *matHeaderCellDef> Name
             </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name + element.surname}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.employee.name}} {{element.employee.surname}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="start">

@@ -37,8 +37,26 @@ export class DepPlanningComponent implements OnInit {
   }
 
   handleChange(event: any) {
-    console.log(event.source._id)
-    console.log(this.selectedValueWeek)
+    this.shiftDataSource.data = []
+    switch (event.source._id) {
+      case 'department':
+        break
+      case 'week':
+        this.selectedValueDay = this.selectedValueWeek.days[0]
+        break
+      case 'day':
+        break
+    }
+
+    if (this.selectedValueDay && this.selectedValueWeek && this.selectedValueDepartment) {
+      this.shiftService.getByDepartmentAndDate(
+        this.selectedValueDepartment,
+        this.selectedValueDay
+      ).subscribe(res => {
+        this.shiftDataSource.data = res
+        console.log('res: ', res)
+      })
+    }
   }
 
   private initDepartments() {
@@ -66,7 +84,7 @@ export class DepPlanningComponent implements OnInit {
       this.weeks.push(tempWeek)
 
       // Set current week
-      if (week === 0){
+      if (week === 0) {
         this.selectedValueWeek = tempWeek
       }
       // Get day of the week where x = 1 equals monday etc..

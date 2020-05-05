@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AddHeaderInterceptor implements HttpInterceptor {
 
-    token: string
+    private token: string
 
     constructor(
         public authService: AuthService

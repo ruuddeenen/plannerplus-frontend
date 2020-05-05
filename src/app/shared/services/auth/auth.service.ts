@@ -41,9 +41,6 @@ export class AuthService {
   async login(email, password) {
     return this.fireAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['profile'])
-        });
         this.setUserData(result.user)
       }).catch((error) => {
         window.alert(error.meessage)

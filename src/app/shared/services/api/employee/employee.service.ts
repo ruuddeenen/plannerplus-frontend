@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from './employee';
 import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 
 
 const _baseUrl = 'http://localhost:8008/api/employees/'
@@ -16,7 +17,10 @@ export class EmployeeService {
   }
 
   getAll(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(_baseUrl)
+    return this.http.get<Employee[]>(_baseUrl).pipe(
+      map((result: any) => {
+        return result._embedded.employeeList
+      }))
   }
 
   post(employee: Employee) {
