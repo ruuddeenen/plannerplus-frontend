@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../shared/services/auth/auth.service';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,16 +11,18 @@ export class AppComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-  ) { }
-  ngOnInit(): void {
-    console.log(location.pathname)
+  ) {
   }
 
-  title = 'Planner+'
-  showSideNav = true
+  title = 'Planner+';
+  showSideNav = true;
+
+  ngOnInit(): void {
+    console.log(location.pathname);
+  }
 
   logout() {
-    this.authService.logout()
-    window.location.href = '/'
+    this.authService.logout().then(() => console.log('Logged out!'));
+    window.location.href = '/';
   }
 }
