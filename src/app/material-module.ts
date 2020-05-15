@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
-import { LayoutModule } from "@angular/cdk/layout";
+import { NgModule } from '@angular/core';
+import { LayoutModule } from '@angular/cdk/layout';
 
-//Angular Material Components
+// Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';

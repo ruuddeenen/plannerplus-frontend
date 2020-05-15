@@ -14,8 +14,7 @@ export class AppComponent implements OnInit {
   ) {
   }
 
-  title = 'Planner+';
-  showSideNav = true;
+  public title = 'Planner+';
 
   ngOnInit(): void {
     console.log(location.pathname);
