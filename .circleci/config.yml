@@ -11,6 +11,8 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+            - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+                path: test-results.xml
 workflows:
     build-and-test:
       jobs:
