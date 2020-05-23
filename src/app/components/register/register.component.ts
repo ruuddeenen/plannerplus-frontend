@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from 'src/app/shared/services/auth/auth.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Role} from '../../shared/services/api/employee/employee';
 
 interface Gender {
   value: number;
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
     phone: new FormControl(),
     place: new FormControl(),
     password: new FormControl(),
-    confpassword: new FormControl()
+    conf_password: new FormControl()
   });
 
   ngOnInit(): void {
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      if (this.form.controls.password.value === this.form.controls.confpassword.value) {
+      if (this.form.controls.password.value === this.form.controls.conf_password.value) {
         const password = this.form.controls.password.value;
         const c = this.form.controls;
         const employee = {
@@ -52,10 +53,11 @@ export class RegisterComponent implements OnInit {
           phone: c.phone.value,
           gender: c.gender.value,
           place: c.place.value,
-          bio: 'Tell more about yourself here..'
+          bio: 'Tell more about yourself here..',
+          role: Role.EMPLOYEE
         };
         console.log(employee);
-        this.authService.register(employee, password).then(r => console.log(r));
+        this.authService.register(employee, password).then(() => window.location.href = '/profile');
       }
     }
   }
