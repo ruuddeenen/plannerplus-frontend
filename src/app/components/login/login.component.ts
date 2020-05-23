@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,13 +15,15 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void { }
-
 
   form: FormGroup = new FormGroup({
-    username: new FormControl,
-    password: new FormControl,
+    username: new FormControl(),
+    password: new FormControl(),
   });
+
+  @Input() error: string | null;
+
+  ngOnInit(): void { }
 
   submit() {
     if (this.form.valid) {
@@ -33,10 +35,8 @@ export class LoginComponent implements OnInit {
           this.form.controls.username.value,
           this.form.controls.password.value).then(() =>
             this.router.navigateByUrl('/profile')
-          )
-      })
+          );
+      });
     }
   }
-
-  @Input() error: string | null
 }

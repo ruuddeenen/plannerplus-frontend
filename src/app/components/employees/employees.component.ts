@@ -3,7 +3,7 @@ import { EmployeeService } from '../../shared/services/api/employee/employee.ser
 import { Employee } from '../../shared/services/api/employee/employee';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { Department } from "../../shared/services/api/department/department";
+import { Department } from '../../shared/services/api/department/department';
 import { DepartmentService } from 'src/app/shared/services/api/department/department.service';
 
 @Component({
@@ -13,47 +13,47 @@ import { DepartmentService } from 'src/app/shared/services/api/department/depart
 })
 export class EmployeesComponent implements OnInit {
 
-  selectedValue: number
-  departments: Department[]
-  displayedColumns: string[] = ['name', 'surname', 'email', 'phone']
-  employeesDataSource = new MatTableDataSource<Employee>()
-  allEmployees: Employee[]
+  selectedValue: number;
+  departments: Department[];
+  displayedColumns: string[] = ['name', 'surname', 'email', 'phone'];
+  employeesDataSource = new MatTableDataSource<Employee>();
+  allEmployees: Employee[];
 
   constructor(
     public employeeService: EmployeeService,
     public departmentService: DepartmentService
   ) { }
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit(): void {
-    this.employeesDataSource.sort = this.sort
-    this.initEmployees()
-    this.initDepartments()
+    this.employeesDataSource.sort = this.sort;
+    this.initEmployees();
+    this.initDepartments();
   }
 
   handleChange(event: { value: number; }) {
-    console.log(event)
+    console.log(event);
     if (event.value === undefined) {
-      this.employeesDataSource.data = this.allEmployees
-      return
+      this.employeesDataSource.data = this.allEmployees;
+      return;
     }
 
     this.departmentService.get(event.value).subscribe(res => {
-      this.employeesDataSource.data = res.employees
-    })
+      this.employeesDataSource.data = res.employees;
+    });
   }
 
   private initEmployees() {
     this.employeeService.getAll().subscribe(res => {
-      this.allEmployees = res
-      this.employeesDataSource.data = res
-    })
+      this.allEmployees = res;
+      this.employeesDataSource.data = res;
+    });
   }
 
   private initDepartments() {
     this.departmentService.getAll().subscribe(res => {
-      this.departments = res
-    })
+      this.departments = res;
+    });
   }
 }

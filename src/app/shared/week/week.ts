@@ -1,4 +1,4 @@
 export interface Week {
-    days: Date[],
-    number: number
+    days: Date[];
+    number: number;
 }

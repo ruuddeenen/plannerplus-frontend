@@ -1,7 +1,7 @@
 import { Employee } from '../employee/employee';
 
-export interface Department{
+export interface Department {
     employees: Employee[];
-    id: number,
-    name: String
+    id: number;
+    name: string;
 }
