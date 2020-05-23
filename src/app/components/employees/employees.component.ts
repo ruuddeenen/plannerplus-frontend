@@ -39,7 +39,7 @@ export class EmployeesComponent implements OnInit {
       return;
     }
 
-    this.departmentService.get(event.value).subscribe(res => {
+    this.departmentService.getDepartmentById(event.value).subscribe(res => {
       this.employeesDataSource.data = res.employees;
     });
   }
@@ -52,7 +52,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   private initDepartments() {
-    this.departmentService.getAll().subscribe(res => {
+    this.departmentService.getAllDepartments().subscribe(res => {
       this.departments = res;
     });
   }

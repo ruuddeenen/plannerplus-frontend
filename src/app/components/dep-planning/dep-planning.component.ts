@@ -60,7 +60,7 @@ export class DepPlanningComponent implements OnInit {
   }
 
   private initDepartments() {
-    this.departmentService.getAll().subscribe(res => {
+    this.departmentService.getAllDepartments().subscribe(res => {
       this.departments = res;
     });
   }
