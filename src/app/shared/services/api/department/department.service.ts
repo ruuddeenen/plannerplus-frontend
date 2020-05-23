@@ -9,16 +9,21 @@ const URL = 'http://localhost:8008/api/departments/';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DepartmentService {
 
   constructor(private http: HttpClient) {
   }
 
-  get(id: number): Observable<Department> {
+  getUrl(): string {
+    return URL;
+  }
+
+  getDepartmentById(id: number): Observable<Department> {
     return this.http.get<Department>(URL + id);
   }
 
-  getAll(): Observable<Department[]> {
+  getAllDepartments(): Observable<Department[]> {
     return this.http.get<Department[]>(URL).pipe(
       map((result: any) => {
         return result._embedded.departmentList;
