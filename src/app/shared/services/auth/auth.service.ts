@@ -14,14 +14,12 @@ export class AuthService {
     public fireStore: AngularFirestore,
     public fireAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone,
     public employeeService: EmployeeService
   ) {
     this.fireAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-
         JSON.parse(localStorage.getItem('user'));
         this.fireAuth.idToken.subscribe(
           data => {

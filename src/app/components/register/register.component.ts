@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from 'src/app/shared/services/auth/auth.service';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Role} from '../../shared/services/api/employee/employee';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Employee} from '../../shared/services/api/employee/employee';
 
 interface Gender {
   value: number;
@@ -27,38 +27,49 @@ export class RegisterComponent implements OnInit {
 
 
   form: FormGroup = new FormGroup({
-    name: new FormControl(),
-    surname: new FormControl(),
-    gender: new FormControl(),
-    email: new FormControl(),
-    phone: new FormControl(),
-    place: new FormControl(),
-    password: new FormControl(),
-    conf_password: new FormControl()
+    name: new FormControl('', [Validators.required]),
+    surname: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    place: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    conf_password: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
   ngOnInit(): void {
   }
 
   submit() {
-    if (this.form.valid) {
-      if (this.form.controls.password.value === this.form.controls.conf_password.value) {
-        const password = this.form.controls.password.value;
-        const c = this.form.controls;
-        const employee = {
-          uuid: '',
-          name: c.name.value,
-          surname: c.surname.value,
-          email: c.email.value,
-          phone: c.phone.value,
-          gender: c.gender.value,
-          place: c.place.value,
-          bio: 'Tell more about yourself here..',
-          role: Role.EMPLOYEE
-        };
-        console.log(employee);
-        this.authService.register(employee, password).then(() => window.location.href = '/profile');
+    if (this.validate(this.form)) {
+      const employee = this.createEmployee(this.form);
+      const password = this.form.controls.password.value;
+
+      this.authService.register(employee, password)
+        .then(() => window.location.href = '/profile');
+    }
+  }
+
+  validate(form: FormGroup): boolean {
+    if (form.valid) {
+      if (form.controls.password.value === form.controls.conf_password.value) {
+        return true;
       }
     }
+    return false;
+  }
+
+  createEmployee(form: FormGroup): Employee {
+    const c = form.controls;
+    return {
+      uuid: '',
+      name: c.name.value,
+      surname: c.surname.value,
+      email: c.email.value,
+      phone: c.phone.value,
+      gender: c.gender.value,
+      place: c.place.value,
+      bio: 'Tell more about yourself here..'
+    };
   }
 }
