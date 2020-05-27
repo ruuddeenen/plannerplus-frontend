@@ -16,7 +16,7 @@ describe('DepartmentService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [DepartmentService]
-    });
+    }).compileComponents();
     injector = getTestBed();
     service = injector.inject(DepartmentService);
     httpMock = injector.inject(HttpTestingController);
