@@ -17,7 +17,7 @@ jobs:
             - "node_modules"
       - run:
           name: Build
-          command: npm build
+          command: npm run build
       - run:
           name: Tests
           command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
@@ -26,4 +26,4 @@ jobs:
           path: test-results
       - run:
           name: Firebase deploy
-          command: firebase deploy --token "$FIREBASE_TOKEN" --aot
+          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --aot
