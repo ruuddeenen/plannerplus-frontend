@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../shared/services/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public router: Router
   ) {
   }
 
@@ -22,7 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().then(r => console.log(r));
+    this.authService.logout().then(_ => this.router.navigate(['login']));
     window.location.href = '/';
   }
 }

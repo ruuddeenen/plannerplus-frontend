@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private initEmployee(id: string) {
-    this.employeeService.get(id)
+    this.employeeService.getEmployeeById(id)
       .subscribe(res => {
         this.employee = res;
       });

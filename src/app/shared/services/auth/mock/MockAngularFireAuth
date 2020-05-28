@@ -1,0 +1,9 @@
+export const MockAngularFireAuth: any = {
+  fireAuth: jasmine.createSpyObj('auth', {
+    signInAnonymously: Promise.reject({
+      code: 'auth/operation-not-allowed'
+    }),
+    // 'signInWithPopup': Promise.reject(),
+    // 'signOut': Promise.reject()
+  }),
+};

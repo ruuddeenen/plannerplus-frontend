@@ -30,12 +30,19 @@ describe('DepartmentService', () => {
     TestBed.resetTestingModule();
   });
 
+  describe('#getURL', () => {
+    it('should return http://localhost:8008/api/departments/', () => {
+      expect(service.getUrl()).toBe('http://localhost:8008/api/departments/');
+    });
+  });
+
   describe('#getAllDepartments', () => {
     it('should return a Observable<Department[]>', () => {
       service.getAllDepartments().subscribe(departments => {
         expect(departments.length).toBe(2);
         expect(departments).toEqual(dummyDepartments);
-        console.log(departments);
+      }, _ => {
+        console.log('catched');
       });
 
       const req = httpMock.expectOne(service.getUrl());
@@ -46,11 +53,14 @@ describe('DepartmentService', () => {
 
   describe('#getDepartmentById', () => {
     it('should return a Observable<Department>', () => {
-      service.getDepartmentById(1).subscribe(department => {
-        expect(department.id).toBe(1);
-        expect(department.name).toBe('DUMMY-NAME-1');
-        expect(department.employees.length).toBe(0);
-      });
+      service.getDepartmentById(1).subscribe(
+        department => {
+          expect(department.id).toBe(1);
+          expect(department.name).toBe('DUMMY-NAME-1');
+          expect(department.employees.length).toBe(0);
+        }, _ => {
+          console.log('catched');
+        });
 
       const req = httpMock.expectOne(service.getUrl() + '1');
       expect(req.request.method).toBe('GET');

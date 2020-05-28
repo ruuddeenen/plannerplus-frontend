@@ -1,22 +1,27 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Employee } from './employee';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Employee} from './employee';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 
 const URL = 'http://localhost:8008/api/employees/';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class EmployeeService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  get(id: string): Observable<Employee> {
+  getUrl(): string {
+    return URL;
+  }
+
+  getEmployeeById(id: string): Observable<Employee> {
     return this.http.get<Employee>(URL + id);
   }
 
-  getAll(): Observable<Employee[]> {
+  getAllEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(URL).pipe(
       map((result: any) => {
         return result._embedded.employeeList;

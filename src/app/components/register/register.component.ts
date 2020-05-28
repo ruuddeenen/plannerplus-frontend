@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from 'src/app/shared/services/auth/auth.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {Employee} from '../../shared/services/api/employee/employee';
 
 interface Gender {
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
+    gender: new FormControl(),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     place: new FormControl('', [Validators.required]),
@@ -42,11 +42,14 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     if (this.validate(this.form)) {
+      console.log('validated');
       const employee = this.createEmployee(this.form);
       const password = this.form.controls.password.value;
 
       this.authService.register(employee, password)
         .then(() => window.location.href = '/profile');
+    } else {
+      console.log('oops');
     }
   }
 
@@ -56,8 +59,22 @@ export class RegisterComponent implements OnInit {
         return true;
       }
     }
+    this.getFormValidationErrors();
     return false;
   }
+
+  getFormValidationErrors() {
+    Object.keys(this.form.controls).forEach(key => {
+
+      const controlErrors: ValidationErrors = this.form.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+        });
+      }
+    });
+  }
+
 
   createEmployee(form: FormGroup): Employee {
     const c = form.controls;
