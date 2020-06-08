@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "plannerplus-frontend"
+  "defaultProject": "plannerplus-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
