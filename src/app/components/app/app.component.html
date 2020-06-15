@@ -1,10 +1,10 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="isExpanded = !isExpanded" name="menu button">
+  <button mat-icon-button (click)="isExpanded = !isExpanded" name="menu">
     <mat-icon>menu</mat-icon>
   </button>
   <h1>Planner+</h1>
   <button mat-button routerLink="/" background-color="accent">Home</button>
-  <button *ngIf="authService.userData" mat-button name="logout" (click)="logout()" background-color="accent">Logout</button>
+  <button name="logout" *ngIf="authService.userData" mat-button  (click)="logout()" background-color="accent">Logout</button>
   <h1 *ngIf="authService.userData as user">Hello, {{user.displayName}}</h1>
 </mat-toolbar>
 

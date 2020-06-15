@@ -21,6 +21,7 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {AddHeaderInterceptor} from './shared/services/api/AddHeaderInterceptor';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory})
+    CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AuthService,
